@@ -4,13 +4,15 @@ import pymysql
 app = Flask(__name__)
 
 # Database connection details
-DB_ENDPOINT = 'your_db_endpoint'
-DB_USERNAME = 'your_db_username'
-DB_PASSWORD = 'your_db_password'
-DB_NAME = 'your_db_name'
+DB_ENDPOINT = 'techie-folks-db.cnkdkk5u04j4.us-east-1.rds.amazonaws.com'
+DB_USERNAME = 'techie_folks'
+DB_PASSWORD = 'techie119147#'
+DB_NAME = 'techie_db'
+DB_PORT = os.getenv('DB_PORT')
 
 def get_db_connection():
     connection = pymysql.connect(host=DB_ENDPOINT,
+                                 port=DB_PORT,
                                  user=DB_USERNAME,
                                  password=DB_PASSWORD,
                                  db=DB_NAME,
