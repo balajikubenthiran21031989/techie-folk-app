@@ -4,11 +4,11 @@ import pymysql
 
 app = Flask(__name__)
 
-# Database connection details from environment variables
-DB_ENDPOINT = os.getenv('DB_ENDPOINT')
-DB_USERNAME = os.getenv('DB_USERNAME')
-DB_PASSWORD = os.getenv('DB_PASSWORD')
-DB_NAME = os.getenv('DB_NAME')
+# Database connection details
+DB_ENDPOINT = 'techie-folks-db.cnkdkk5u04j4.us-east-1.rds.amazonaws.com'  # Update with your RDS endpoint
+DB_USERNAME = 'techie_folks'  # Update with your RDS username
+DB_PASSWORD = 'techie119147#'  # Update with your RDS password
+DB_NAME = 'techie'  # Update with your RDS database name
 
 def get_db_connection():
     connection = pymysql.connect(host=DB_ENDPOINT,
@@ -42,7 +42,3 @@ def submit():
     connection.close()
 
     return 'Form Submitted Successfully!'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
-
