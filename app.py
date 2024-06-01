@@ -1,14 +1,15 @@
+import os
 from flask import Flask, request, render_template
 import pymysql
 
 app = Flask(__name__)
 
-# Database connection details
-DB_ENDPOINT = 'techie-folks-db.cnkdkk5u04j4.us-east-1.rds.amazonaws.com'
-DB_USERNAME = 'techie_folks'
-DB_PASSWORD = 'techie119147#'
-DB_NAME = 'techie_db'
-DB_PORT = os.getenv('DB_PORT')
+# Database connection details from environment variables
+DB_ENDPOINT = os.getenv('techie-folks-db.cnkdkk5u04j4.us-east-1.rds.amazonaws.com')  # Update with your actual DB endpoint from DATABASE_URL
+DB_USERNAME = os.getenv('techie_folks')  # Update with your actual DB username from DATABASE_URL
+DB_PASSWORD = os.getenv('techie119147#')  # Update with your actual DB password from DATABASE_URL
+DB_NAME = os.getenv('techie_db')  # Update with your actual DB name from DATABASE_URL
+DB_PORT = os.getenv('3306')  # Update with your actual DB port number from DATABASE_URL
 
 def get_db_connection():
     connection = pymysql.connect(host=DB_ENDPOINT,
