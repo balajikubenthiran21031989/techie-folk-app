@@ -5,21 +5,21 @@ import pymysql
 app = Flask(__name__)
 
 # Database connection details from environment variables
-DB_ENDPOINT = os.getenv('techie-folks-db.cnkdkk5u04j4.us-east-1.rds.amazonaws.com')  # Update with your actual DB endpoint from DATABASE_URL
-DB_USERNAME = os.getenv('techie_folks')  # Update with your actual DB username from DATABASE_URL
-DB_PASSWORD = os.getenv('techie119147#')  # Update with your actual DB password from DATABASE_URL
-DB_NAME = os.getenv('techie_db')  # Update with your actual DB name from DATABASE_URL
-DB_PORT = os.getenv('3306')  # Update with your actual DB port number from DATABASE_URL
+DB_ENDPOINT = os.getenv('DB_ENDPOINT')
+DB_PORT = os.getenv('DB_PORT')
+DB_USERNAME = os.getenv('DB_USERNAME')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_NAME = os.getenv('DB_NAME')
 
 def get_db_connection():
     connection = pymysql.connect(host=DB_ENDPOINT,
-                                 port=DB_PORT,
+                                 port=int(DB_PORT),
                                  user=DB_USERNAME,
                                  password=DB_PASSWORD,
                                  db=DB_NAME,
                                  cursorclass=pymysql.cursors.DictCursor)
     return connection
-
+    
 @app.route('/')
 def index():
     return render_template('index.html')
