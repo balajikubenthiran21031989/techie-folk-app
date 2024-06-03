@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir flask pymysql
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
@@ -18,4 +18,3 @@ ENV NAME TechieFolksApp
 
 # Run app.py when the container launches
 CMD ["python", "app.py"]
-

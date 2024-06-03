@@ -1,0 +1,23 @@
+{
+  "family": "prometheus-task",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::347830568977:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "prometheus",
+      "image": "347830568977.dkr.ecr.us-east-1.amazonaws.com/prometheus:latest",
+      "essential": true,
+      "memory": 512,
+      "cpu": 256,
+      "portMappings": [
+        {
+          "containerPort": 9090,
+          "hostPort": 9090
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024"
+}

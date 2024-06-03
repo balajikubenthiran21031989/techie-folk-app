@@ -1,0 +1,33 @@
+{
+  "family": "grafana-task",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::347830568977:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "grafana",
+      "image": "347830568977.dkr.ecr.us-east-1.amazonaws.com/grafana:latest",
+      "essential": true,
+      "memory": 1024,
+      "cpu": 512,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000
+        }
+      ],
+      "environment": [
+        {
+          "name": "GF_SECURITY_ADMIN_USER",
+          "value": "admin"
+        },
+        {
+          "name": "GF_SECURITY_ADMIN_PASSWORD",
+          "value": "admin"
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024"
+}

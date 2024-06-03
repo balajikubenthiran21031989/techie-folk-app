@@ -1,8 +1,10 @@
 import os
 from flask import Flask, request, render_template
 import pymysql
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 
 # Database connection details from environment variables
 DB_ENDPOINT = os.getenv('DB_ENDPOINT')
@@ -19,7 +21,7 @@ def get_db_connection():
                                  db=DB_NAME,
                                  cursorclass=pymysql.cursors.DictCursor)
     return connection
-    
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -36,7 +38,7 @@ def submit():
     connection = get_db_connection()
     with connection.cursor() as cursor:
         sql = """
-        INSERT INTO users (first_name, last_name, email, phone, address, description) 
+        INSERT INTO users (first_name, last_name, email, phone, address, description)
         VALUES (%s, %s, %s, %s, %s, %s)
         """
         cursor.execute(sql, (first_name, last_name, email, phone, address, description))
